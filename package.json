@@ -1,0 +1,30 @@
+{
+  "name": "eslint-improved-checkstyle-formatter",
+  "version": "0.1.0",
+  "description": "Improved ESLint Checkstyle formatter",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/normful/eslint-improved-checkstyle-formatter.git"
+  },
+  "author": "Norman Sue <normful@gmail.com>",
+  "engines": {
+    "node": ">=0.10.0"
+  },
+  "files": [
+    "index.js"
+  ],
+  "keywords": [
+    "eslint",
+    "eslint-formatter",
+    "formatter",
+    "reporter",
+    "lint",
+    "validate"
+  ],
+  "bugs": {
+    "url": "https://github.com/normful/eslint-improved-checkstyle-formatter/issues"
+  },
+  "homepage": "https://github.com/normful/eslint-improved-checkstyle-formatter",
+  "main": "index.js"
+}
