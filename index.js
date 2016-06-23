@@ -1,7 +1,3 @@
-/**
- * @fileoverview CheckStyle XML reporter
- * @author Ian Christian Myers
- */
 "use strict";
 
 //------------------------------------------------------------------------------
@@ -47,6 +43,22 @@ function xmlEscape(s) {
     });
 }
 
+/**
+ * Returns the absolute filepath with the proejct directory changed
+ * @param {string} absPath original absolute filepath
+ * @returns {string} modified absolute filepath
+ * @private
+ */
+function replacedPath(absPath) {
+    var oldDir = process.env.CHECKSTYLE_OLD_PROJECT_DIR;
+    var newDir = process.env.CHECKSTYLE_NEW_PROJECT_DIR;
+
+    if (!oldDir || !newDir) {
+        return absPath;
+    }
+    return absPath.replace(oldDir, newDir);
+}
+
 //------------------------------------------------------------------------------
 // Public Interface
 //------------------------------------------------------------------------------
@@ -61,15 +73,20 @@ module.exports = function(results) {
     results.forEach(function(result) {
         var messages = result.messages;
 
-        output += "<file name=\"" + xmlEscape(result.filePath) + "\">";
+        output += "<file name=\"" + xmlEscape(replacedPath(result.filePath)) + "\">";
 
         messages.forEach(function(message) {
-            output += "<error line=\"" + xmlEscape(message.line) + "\" " +
-                "column=\"" + xmlEscape(message.column) + "\" " +
-                "severity=\"" + xmlEscape(getMessageType(message)) + "\" " +
-                "message=\"" + xmlEscape(message.message) +
-                (message.ruleId ? " (" + message.ruleId + ")" : "") + "\" " +
-                "source=\"" + (message.ruleId ? xmlEscape("eslint.rules." + message.ruleId) : "") + "\" />";
+            output += "<error line=\""     + xmlEscape(message.line) + "\" " +
+                             "column=\""   + xmlEscape(message.column) + "\" " +
+                             "severity=\"" + xmlEscape(getMessageType(message)) + "\" " +
+                             "message=\""  + xmlEscape(message.message) +
+                                             (message.ruleId
+                                              ? xmlEscape(" (" + message.ruleId + ") http://eslint.org/docs/rules/" + message.ruleId)
+                                              : "") + "\" " +
+                             "source=\""   + (message.ruleId
+                                              ? xmlEscape("eslint.rules." + message.ruleId)
+                                              : "") + "\"" +
+                      "/>";
         });
 
         output += "</file>";
