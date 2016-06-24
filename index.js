@@ -53,7 +53,7 @@ function replacedPath(absPath) {
     var oldDir = process.env.CHECKSTYLE_OLD_PROJECT_DIR;
     var newDir = process.env.CHECKSTYLE_NEW_PROJECT_DIR;
 
-    if (!oldDir || !newDir) {
+    if (typeof oldDir === 'undefined' || typeof newDir === 'undefined') {
         return absPath;
     }
     return absPath.replace(oldDir, newDir);
