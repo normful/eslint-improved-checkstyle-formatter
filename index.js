@@ -80,9 +80,7 @@ module.exports = function(results) {
                              "column=\""   + xmlEscape(message.column) + "\" " +
                              "severity=\"" + xmlEscape(getMessageType(message)) + "\" " +
                              "message=\""  + xmlEscape(message.message) +
-                                             (message.ruleId
-                                              ? xmlEscape(" (" + message.ruleId + ") http://eslint.org/docs/rules/" + message.ruleId)
-                                              : "") + "\" " +
+                                             (message.ruleId ? xmlEscape(" (" + message.ruleId + ")") : "") + "\" " +
                              "source=\""   + (message.ruleId
                                               ? xmlEscape("eslint.rules." + message.ruleId)
                                               : "") + "\"" +

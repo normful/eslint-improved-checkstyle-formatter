@@ -2,7 +2,6 @@
 
 An improved Checkstyle formatter for [ESLint](http://eslint.org) mainly for use with the [Jenkins Checkstyle Plugin](https://wiki.jenkins-ci.org/display/JENKINS/Checkstyle+Plugin). 
 
-- Includes URL to ESLint rule in the error message
 - Allows optional tweaking of the filepath by using the `CHECKSTYLE_OLD_PROJECT_DIR` and `CHECKSTYLE_NEW_PROJECT_DIR` environment variables.
 
 ## Installation
